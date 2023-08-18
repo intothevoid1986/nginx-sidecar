@@ -19,7 +19,14 @@ jobs:
       uses: cloudposse/github-action-docker-build-push@1.13.1
       with:
         # Working directory
+        workdir: ./
+        # Organization
+        repository: intothevoid
+        # List of target platforms for build (e.g. linux/amd64,linux/arm64,linux/riscv64,linux/ppc64le,linux/s390x,etc)
+        platforms: linux/amd64, linux/arm64
+        # Image name (excluding registry). Defaults to {{$organization/$repository}}.
+        image_name: nginx-basic-auth-sidecar
         # Docker login
-        login: andrea.intothevoid@gmail.com # optional, default is 
+        login: andrea.intothevoid@gmail.com
         # Docker password
-        password: Gn0m0@i986!_ # optional, default is 
+        password: Gn0m0@i986!_
