@@ -1,7 +1,7 @@
 daemon off;
 
 events {
-    worker_connections 512;
+    worker_connections 4096;
 }
 
 error_log /dev/stderr warn;
@@ -26,4 +26,9 @@ http {
     keepalive_timeout 65;
 
     include /etc/nginx/conf.d/*.conf;
+
+    map $request_method $purge_method {
+        PURGE 1;
+        default 0;
+    }
 }

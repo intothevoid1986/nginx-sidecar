@@ -5,12 +5,6 @@ upstream backend {
 
 {{ if .Env.ENABLE_CACHE }}
 proxy_cache_path /tmp/cache keys_zone=cache:10m levels=1:2 inactive=600s max_size=100m;
-#http {
-#    map $request_method $purge_method {
-#        PURGE 1;
-#        default 0;
-#    }
-#}
 {{ end }}
 
 
@@ -66,7 +60,7 @@ server {
 
 {{ if .Env.ENABLE_CACHE }}
         proxy_cache cache;
-        #proxy_cache_purge $purge_method;
+        proxy_cache_purge $purge_method;
         proxy_cache_valid 200 1s;
         proxy_cache_lock on;
         proxy_cache_use_stale updating;
