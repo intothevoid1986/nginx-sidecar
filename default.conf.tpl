@@ -61,7 +61,7 @@ server {
 {{ if .Env.ENABLE_CACHE }}
         proxy_cache cache;
         # proxy_cache_purge $purge_method;
-        proxy_cache_valid 200 1s;
+        proxy_cache_valid 200 3600s;
         proxy_cache_lock on;
         proxy_cache_use_stale updating;
 {{ end }}
