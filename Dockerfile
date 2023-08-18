@@ -5,9 +5,9 @@ MAINTAINER "Andrea Colaiuda <andrea.colaiuda@neen.com>"
 # METADATA
 # --------------------
 EXPOSE 8087
-ENV NGINX_VERSION=1.12.2 \
+ENV NGINX_VERSION=1.25.2 \
   DOCKERIZE_VERSION=v0.6.1 \
-  ARCH=amd64
+  ARCH=amd64 \
   PORT=8087 \
   FORWARD_HOST=localhost \
   FORWARD_PORT=8080 \
