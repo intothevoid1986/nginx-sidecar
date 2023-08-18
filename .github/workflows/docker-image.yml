@@ -19,7 +19,7 @@ jobs:
       uses: cloudposse/github-action-docker-build-push@1.13.1
       with:
         # Working directory
-        image_name: nginx-sidecar-basic-auth # optional, default is 
+        image_name: intothevoid/nginx-sidecar-basic-auth # optional, default is 
         # Docker login
         login: andrea.intothevoid@gmail.com # optional, default is 
         # Docker password
