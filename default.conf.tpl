@@ -52,12 +52,12 @@ server {
         proxy_request_buffering {{ .Env.PROXY_REQUEST_BUFFERING }};
         proxy_buffering {{ .Env.PROXY_BUFFERING }};
 
-        {{ if .Env.ENABLE_CACHE eq "on" }}
-            proxy_cache cache;
-            proxy_cache_valid 200 1s;
-            proxy_cache_lock on;
-            proxy_cache_use_stale updating;
-        {{ end }}
+{{ if .Env.ENABLE_CACHE }}
+        proxy_cache cache;
+        proxy_cache_valid 200 1s;
+        proxy_cache_lock on;
+        proxy_cache_use_stale updating;
+{{ end }}
     }
     
     location /health {
