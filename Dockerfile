@@ -22,7 +22,7 @@ ENV NGINX_VERSION=1.25.2 \
 # --------------------
 # DEPENDENCIES
 # --------------------
-RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-$ARCH-$DOCKERIZE_VERSION.tar.gz \
+RUN wget -O dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-alpine-linux-${ARCH}-${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xzvf dockerize.tar.gz \
   && apk add --update --no-cache --virtual entrypoint apache2-utils \
   && rm dockerize.tar.gz /etc/nginx/conf.d/default.conf /etc/nginx/nginx.conf \
