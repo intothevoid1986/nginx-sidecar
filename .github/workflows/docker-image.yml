@@ -13,20 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Build the Docker image
-      # You may pin to the exact commit or the version.
-      # uses: cloudposse/github-action-docker-build-push@0192482637b94d39a2e76d4b01ab6f626c79e7cc
-      uses: cloudposse/github-action-docker-build-push@1.13.1
-      with:
-        # Working directory
-        workdir: ./
-        # Organization
-        repository: intothevoid
-        # List of target platforms for build (e.g. linux/amd64,linux/arm64,linux/riscv64,linux/ppc64le,linux/s390x,etc)
-        platforms: linux/amd64, linux/arm64
-        # Image name (excluding registry). Defaults to {{$organization/$repository}}.
-        image_name: nginx-basic-auth-sidecar
-        # Docker login
-        login: andrea.intothevoid@gmail.com
-        # Docker password
-        password: Gn0m0@i986!_
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        id: build
+        uses: cloudposse/github-action-docker-build-push@main
+        with:
+          registry: registry.hub.docker.com
+          organization: "${{ github.event.repository.owner.login }}"
+          repository: "${{ github.event.repository.name }}"
+          login: "${{ secrets.DOCKERHUB_USERNAME }}"
+          password: "${{ secrets.DOCKERHUB_PASSWORD }}"
+          platforms: linux/amd64,linux/arm64
+
+    outputs:
+      image: ${{ steps.build.outputs.image }}
+      tag: ${{ steps.build.outputs.tag }}
