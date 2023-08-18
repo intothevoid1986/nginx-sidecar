@@ -48,4 +48,10 @@ server {
         proxy_request_buffering {{ .Env.PROXY_REQUEST_BUFFERING }};
         proxy_buffering {{ .Env.PROXY_BUFFERING }};
     }
+    
+    location /health {
+        access_log off;
+        add_header 'Content-Type' 'text/plain';
+        return 200 "healthy\n";
+    }
 }
