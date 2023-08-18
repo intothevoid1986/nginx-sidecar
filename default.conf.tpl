@@ -3,11 +3,21 @@ upstream backend {
     server {{ .Env.FORWARD_HOST }}:{{ .Env.FORWARD_PORT }} max_fails=0;
 }
 
+{{ if .Env.ENABLE_CACHE }}
+proxy_cache_path /tmp/cache keys_zone=cache:10m levels=1:2 inactive=600s max_size=100m;
+{{ end }}
+
+map $request_method $purge_method {
+    PURGE=1;
+    default 0;
+}
+
 # WS Handling
 map $http_upgrade $connection_upgrade {
     default upgrade;
     ''      close;
 }
+
 
 # Server Definition
 server {
@@ -54,6 +64,7 @@ server {
 
 {{ if .Env.ENABLE_CACHE }}
         proxy_cache cache;
+        proxy_cache_purge $purge_method;
         proxy_cache_valid 200 1s;
         proxy_cache_lock on;
         proxy_cache_use_stale updating;
