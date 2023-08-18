@@ -5,12 +5,14 @@ upstream backend {
 
 {{ if .Env.ENABLE_CACHE }}
 proxy_cache_path /tmp/cache keys_zone=cache:10m levels=1:2 inactive=600s max_size=100m;
+http {
+    map $request_method $purge_method {
+        PURGE 1;
+        default 0;
+    }
+}
 {{ end }}
 
-map $request_method $purge_method {
-    PURGE 1;
-    default 0;
-}
 
 # WS Handling
 map $http_upgrade $connection_upgrade {
