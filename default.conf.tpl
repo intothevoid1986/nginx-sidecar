@@ -8,7 +8,7 @@ proxy_cache_path /tmp/cache keys_zone=cache:10m levels=1:2 inactive=600s max_siz
 {{ end }}
 
 map $request_method $purge_method {
-    PURGE=1;
+    PURGE 1;
     default 0;
 }
 
