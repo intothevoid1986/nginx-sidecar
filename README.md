@@ -1,6 +1,6 @@
 # nginx-sidecar
 
-[![Docker Image CI](https://github.com/intothevoid1986/nginx-sidecar-basic-auth/actions/workflows/docker-image.yml/badge.svg)](https://github.com/intothevoid1986/nginx-sidecar-basic-auth/actions/workflows/docker-image.yml)
+[![Docker Image CI](https://github.com/intothevoid1986/nginx-sidecar/actions/workflows/docker-image.yml/badge.svg)](https://github.com/intothevoid1986/nginx-sidecar-basic-auth/actions/workflows/docker-image.yml)
 
 This is a Docker image that provides an [nginx][nginx] proxy server enforcing
 HTTP basic authentication on every request (exception `OPTIONS`). It is suitable
