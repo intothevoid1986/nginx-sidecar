@@ -18,7 +18,9 @@ map $http_upgrade $connection_upgrade {
 # Server Definition
 server {
     listen {{ .Env.PORT }};
-
+    proxy_busy_buffers_size   512k;
+    proxy_buffers   4 512k;
+    proxy_buffer_size   256k;
 {{ if .Env.WEBSOCKET_PATH }}
     location {{ .Env.WEBSOCKET_PATH }} {
         proxy_pass http://backend{{ .Env.FORWARD_WEBSOCKET_PATH | default "" }};
